@@ -8,10 +8,12 @@ export default {
       current: 'currentColor',
       black: colors.black,
       white: colors.white,
-      gray: colors.slate,
+      gray: colors.zinc,
       primary: colors.indigo,
-      danger: colors.red,
-      success: colors.green
+      error: colors.red,
+      success: colors.green,
+      alert: colors.yellow,
+      info: colors.blue
     },
     extend: {}
   },
