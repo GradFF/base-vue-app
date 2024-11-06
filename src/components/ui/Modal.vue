@@ -1,7 +1,7 @@
 <script setup>
 import { computed, onMounted, onUnmounted, watch } from 'vue'
 
-import Icon from '@/components/Icon.vue'
+import { X } from 'lucide-vue-next'
 
 const props = defineProps({
   show: {
@@ -96,13 +96,14 @@ const maxWidthClass = computed(() => {
         >
           <div
             v-show="show"
-            class="mb-6 bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto w-full"
+            class="bg-white rounded-lg overflow-hidden shadow-xl transform transition-all sm:w-full sm:mx-auto w-full"
             :class="maxWidthClass"
           >
-            <div v-if="show" class="relative p-6 bg-white rounded-lg shadow">
+            <div v-if="show" class="relative bg-white rounded-lg shadow">
               <!-- Modal header -->
               <div
-                class="flex justify-between items-center pb-4 rounded-t border-b border-gray-300"
+                :class="$slots.header ? 'border-b border-gray-300 ' : ''"
+                class="p-4 rounded-t flex justify-between items-center"
               >
                 <div>
                   <slot name="header" />
@@ -110,16 +111,23 @@ const maxWidthClass = computed(() => {
 
                 <button
                   type="button"
-                  class="btn btn-icon btn-sm"
+                  class="p-2 rounded-md hover:bg-gray-200"
                   @click="close"
                 >
-                  <Icon name="X" class="w-5" />
+                  <X class="w-5" />
                 </button>
               </div>
               <!-- Modal body -->
-              <slot name="content" />
-              <!-- <div class="py-4">
-              </div> -->
+              <div :class="$slots.header ? '' : 'pt-0'" class="p-6">
+                <slot name="content" />
+              </div>
+              <!-- Modal footer -->
+              <div
+                v-if="$slots.footer"
+                class="py-4 px-6 rounded-b border-gray-300 border-t"
+              >
+                <slot name="footer" />
+              </div>
             </div>
           </div>
         </transition>

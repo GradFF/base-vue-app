@@ -1,24 +1,33 @@
 <script setup>
-import Text from '@/components/Text.vue'
-import { useStore } from '@/stores'
-import Button from '@/components/Button.vue'
-import Icon from '@/components/Icon.vue'
-import Dropdown from '@/components/Dropdown.vue'
-import DropdownLink from '@/components/DropdownLink.vue'
 import { ref } from 'vue'
-import Modal from '@/components/Modal.vue'
-import Input from '@/components/Input.vue'
-import Checkbox from '../components/Checkbox.vue'
+import { useStore } from '@/stores'
+
+import {
+  Text,
+  Icon,
+  Modal,
+  Input,
+  Button,
+  Dropdown,
+  Checkbox,
+  DropdownLink
+} from '@/components/ui'
 
 const { user } = useStore()
 
 const isOpen = ref(false)
+
+const options = [
+  { value: '01', name: 'option 01' },
+  { value: '02', name: 'option 02' },
+  { value: '03', name: 'option 03' }
+]
 </script>
 
 <template>
   <div class="container mx-auto">
-    <Text as="title"> Home Page </Text>
-    <Text as="body"> Welcome: {{ user?.name }} </Text>
+    <Text as="h1"> Home Page </Text>
+    <Text as="p" class="text-sm"> Welcome: {{ user?.name }} </Text>
 
     <div class="flex space-x-4 mt-4">
       <Button>base</Button>
@@ -63,10 +72,39 @@ const isOpen = ref(false)
             blanditiis sed necessitatibus.
           </Text>
         </template>
+        <template #footer>
+          <Button variant="primary">Confimar</Button>
+        </template>
       </Modal>
     </div>
-    <div class="mt-4">
+    <div class="mt-4 space-y-6">
       <Input type="text" label="Input" />
+
+      <Input label="e-mail" type="email" required />
+      <Input label="Bio" type="textarea" rows="5" required />
+      <Input
+        label="Options"
+        type="select"
+        :options="options"
+        placeholder="Select an option"
+      />
+      <Input
+        placeholder="E-mail"
+        label="e-mail"
+        type="email"
+        required
+        error="This is an error"
+      />
+
+      <!-- Search -->
+      <Input placeholder="Pesquisar">
+        <template #prefix>
+          <Icon name="Search" clase="size-4" />
+        </template>
+        <template #suffix>
+          <Button variant="primary" sm>Pesquisar</Button>
+        </template>
+      </Input>
     </div>
     <div class="mt-4">
       <Checkbox

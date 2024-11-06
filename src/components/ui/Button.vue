@@ -6,6 +6,7 @@ const props = defineProps({
   to: [String, Object],
   loading: Boolean,
   icon: Boolean,
+  sm: Boolean,
   variant: {
     type: String,
     default: 'base',
@@ -28,8 +29,17 @@ const classes = computed(() => {
 <template>
   <component
     :is="to ? 'RouterLink' : 'button'"
-    :class="[classes, icon ? 'px-2' : 'px-4']"
-    class="inline-flex items-center justify-center py-2 text-sm font-medium tracking-wide capitalize rounded hover:shadow-lg transition-all duration-200 transform outline-none focus:active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed focus:ring-2 focus:ring-opacity-50"
+    :class="[
+      classes,
+      sm
+        ? icon
+          ? ' py-1.5 px-1.5'
+          : ' py-1.5 px-3'
+        : icon
+        ? ' py-2 px-2'
+        : ' py-2 px-4'
+    ]"
+    class="inline-flex items-center justify-center text-sm font-medium tracking-wide capitalize rounded hover:shadow-lg transition-all duration-200 transform outline-none focus:active:scale-95 disabled:opacity-70 disabled:cursor-not-allowed focus:ring-2 focus:ring-opacity-50"
   >
     <Icon v-if="loading" name="Loader" class="size-5 animate-spin" />
     <slot v-else />
