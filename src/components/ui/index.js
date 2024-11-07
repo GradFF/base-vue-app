@@ -8,6 +8,8 @@ import Footer from './Footer.vue'
 import Dropdown from './Dropdown.vue'
 import Checkbox from './Checkbox.vue'
 import DropdownLink from './DropdownLink.vue'
+import Table from './Table.vue'
+import TableItem from './TableItem.vue'
 
 export {
   Text,
@@ -19,5 +21,7 @@ export {
   Button,
   Dropdown,
   Checkbox,
-  DropdownLink
+  DropdownLink,
+  Table,
+  TableItem
 }
