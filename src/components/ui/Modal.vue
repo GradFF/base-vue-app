@@ -113,6 +113,7 @@ const maxWidthClass = computed(() => {
                   type="button"
                   class="p-2 rounded-md hover:bg-gray-200"
                   @click="close"
+                  v-if="closeable"
                 >
                   <X class="w-5" />
                 </button>

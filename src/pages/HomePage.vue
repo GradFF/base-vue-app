@@ -15,6 +15,7 @@ import {
   TableItem
 } from '@/components/ui'
 import { Plus } from 'lucide-vue-next'
+import Logo from '../components/ui/Logo.vue'
 
 const { user } = useStore()
 
@@ -57,6 +58,7 @@ const contacts = [
 
 <template>
   <div class="container mx-auto my-16">
+    <Logo />
     <Text as="h1"> Home Page </Text>
     <Text as="p" class="text-sm"> Welcome: {{ user?.name }} </Text>
 
@@ -91,7 +93,7 @@ const contacts = [
         >Open Modal</Button
       >
 
-      <Modal :show="isOpen" @close="isOpen = false">
+      <Modal :show="isOpen" @close="isOpen = false" :closeable="false">
         <template #header>
           <Text as="h3">Base Modal</Text>
         </template>
@@ -104,7 +106,7 @@ const contacts = [
           </Text>
         </template>
         <template #footer>
-          <Button variant="primary">Confimar</Button>
+          <Button variant="primary" @click="isOpen = false">Confimar</Button>
         </template>
       </Modal>
     </div>
